@@ -1,0 +1,6 @@
+@dejting_yarp_HostAddress = http://localhost:5177
+
+GET {{dejting_yarp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
