@@ -27,4 +27,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapReverseProxy();
 });
 
+// Configure the application to listen on port 8081
+app.Urls.Add("http://*:8080");
+
 app.Run();
