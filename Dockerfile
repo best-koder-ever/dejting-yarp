@@ -4,11 +4,12 @@ WORKDIR /app
 
 # Copy the project file and restore dependencies
 COPY src/dejting-yarp/dejting-yarp.csproj src/dejting-yarp/
+COPY src/dejting-yarp.Tests/dejting-yarp.Tests.csproj src/dejting-yarp.Tests/
 RUN dotnet restore "src/dejting-yarp/dejting-yarp.csproj"
 
 # Copy the rest of the application files
 COPY src/dejting-yarp/ src/dejting-yarp/
-COPY src/dejting-yarp.Tests/ src/dejting-yarp.Tests/ # Assuming tests might be needed in build
+COPY src/dejting-yarp.Tests/ src/dejting-yarp.Tests/
 
 # Build and publish the application
 RUN dotnet publish "src/dejting-yarp/dejting-yarp.csproj" -c Release -o /app/out
