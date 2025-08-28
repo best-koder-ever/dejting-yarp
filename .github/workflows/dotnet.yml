@@ -1,0 +1,39 @@
+name: 🌐 YARP API Gateway CI/CD
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: 📦 Restore dependencies
+      run: dotnet restore dejting-yarp.sln
+
+    - name: 🏗️ Build solution
+      run: dotnet build dejting-yarp.sln --no-restore --configuration Release
+
+    - name: 🧪 Run tests
+      run: |
+        dotnet test --no-build --configuration Release
+
+    - name: 🏗️ Build Docker image
+      run: |
+        docker build -t dejting-yarp:latest .
+
+    - name: 📤 Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: yarp-gateway-build
+        path: src/dejting-yarp/bin/Release/net8.0/
