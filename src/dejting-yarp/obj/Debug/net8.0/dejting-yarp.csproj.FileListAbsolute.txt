@@ -106,3 +106,4 @@
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/obj/Debug/net8.0/dejting-yarp.pdb
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/obj/Debug/net8.0/dejting-yarp.genruntimeconfig.cache
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/obj/Debug/net8.0/ref/dejting-yarp.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/appsettings.Demo.json
