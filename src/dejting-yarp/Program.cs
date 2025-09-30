@@ -5,6 +5,12 @@ using Yarp.ReverseProxy;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add configuration sources
+if (builder.Environment.EnvironmentName == "Local")
+{
+    builder.Configuration.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true);
+}
+
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
