@@ -1,3 +1,7 @@
+using System;
+using DejtingYarp.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +15,6 @@ if (builder.Environment.EnvironmentName == "Local")
     builder.Configuration.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true);
 }
 
-// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -26,6 +29,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddReverseProxy()
                 .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+
+builder.Services.AddKeycloakAuthentication(builder.Configuration);
+builder.Services.AddAuthorization();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -43,10 +49,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Use CORS policy
-app.UseCors("AllowAll");
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -62,16 +64,43 @@ else
     });
 }
 
+app.UseCors("AllowAll");
+
 app.UseRouting();
 
-// Configure YARP middleware
-app.UseEndpoints(endpoints =>
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapReverseProxy(proxyPipeline =>
 {
-    endpoints.MapControllers();
-    endpoints.MapReverseProxy();
+    proxyPipeline.Use(async (context, next) =>
+    {
+        if (context.Request.Path.StartsWithSegments("/api/auth", StringComparison.OrdinalIgnoreCase))
+        {
+            await next();
+            return;
+        }
+
+        var authService = context.RequestServices.GetRequiredService<IAuthenticationService>();
+        var authenticateResult = await authService.AuthenticateAsync(context, JwtBearerDefaults.AuthenticationScheme);
+
+        if (!authenticateResult.Succeeded || authenticateResult.Principal is null)
+        {
+            await context.ChallengeAsync(JwtBearerDefaults.AuthenticationScheme);
+            return;
+        }
+
+        context.User = authenticateResult.Principal;
+
+        await next();
+    });
 });
 
 // Configure the application to listen on port 8081
 app.Urls.Add("http://*:8080");
 
 app.Run();
+
+public partial class Program;

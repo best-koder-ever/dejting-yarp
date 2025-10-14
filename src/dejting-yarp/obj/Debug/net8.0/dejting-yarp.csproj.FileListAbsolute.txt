@@ -36,3 +36,11 @@
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/obj/Debug/net8.0/dejting-yarp.genruntimeconfig.cache
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/obj/Debug/net8.0/ref/dejting-yarp.dll
 /home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/appsettings.Local.json
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/m/development/DatingApp/dejting-yarp/src/dejting-yarp/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

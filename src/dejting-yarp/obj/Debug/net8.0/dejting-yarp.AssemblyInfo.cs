@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dejting-yarp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f43d43b3784476911174fdb8b18c74d05a2c482")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4528c98bca407a79c455d9189d9675c5997a4a43")]
 [assembly: System.Reflection.AssemblyProductAttribute("dejting-yarp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dejting-yarp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
